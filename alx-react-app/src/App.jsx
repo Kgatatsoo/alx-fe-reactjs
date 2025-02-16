@@ -10,17 +10,19 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 
+
 function App() {
   return (
     <div className="App">
       <UserProfile 
-        name="LERATO" 
-        age="29" 
-        bio="MUSIC LOVER" 
+        name="Alice" 
+        age="25" 
+        bio="Loves hiking and photography" 
       />
     </div>
   );
 }
 
 export default App;
+
 
