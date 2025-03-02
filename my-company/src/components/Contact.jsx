@@ -1,33 +1,40 @@
 
+import { useState } from 'react';
 
-import React, { useState } from 'react';
-
-const Contact = () => {
+function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: '',
+    message: ''
   });
 
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  
+  const handleSubmit = (e) => {
+    e.preventDefault(); 
+    alert('Form submitted!');
+    console.log(formData); 
   };
 
   return (
-    <div style={styles.page}>
+    <div style={{ padding: '20px' }}>
       <h1>Contact Us</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
           placeholder="Your Name"
           value={formData.name}
           onChange={handleChange}
-          style={styles.input}
+          style={{ display: 'block', margin: '10px 0' }}
         />
         <input
           type="email"
@@ -35,45 +42,19 @@ const Contact = () => {
           placeholder="Your Email"
           value={formData.email}
           onChange={handleChange}
-          style={styles.input}
+          style={{ display: 'block', margin: '10px 0' }}
         />
         <textarea
           name="message"
           placeholder="Your Message"
           value={formData.message}
           onChange={handleChange}
-          style={styles.textarea}
+          style={{ display: 'block', margin: '10px 0' }}
         />
-        <button type="submit" style={styles.button}>Submit</button>
+        <button type="submit">Send Message</button>
       </form>
     </div>
   );
-};
-
-const styles = {
-  page: {
-    textAlign: 'center',
-    padding: '50px',
-    backgroundColor: '#c8e6c9',
-  },
-  input: {
-    padding: '10px',
-    margin: '10px',
-    width: '200px',
-  },
-  textarea: {
-    padding: '10px',
-    margin: '10px',
-    width: '200px',
-    height: '100px',
-  },
-  button: {
-    padding: '10px 20px',
-    backgroundColor: '#4caf50',
-    color: 'white',
-    border: 'none',
-    cursor: 'pointer',
-  },
-};
+}
 
 export default Contact;
